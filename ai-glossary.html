@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Glossary for Designers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F5F0;
+  --bg2: #EFECEA;
+  --bg3: #E5E2DC;
+  --ink: #1A1815;
+  --ink2: #5A5650;
+  --ink3: #9A9590;
+  --accent: #C84B2F;
+  --accent2: #E8773D;
+  --border: rgba(26,24,21,0.09);
+  --border2: rgba(26,24,21,0.16);
+  --white: #FFFFFF;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.7;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:56px;}
+.nav-brand{font-family:'DM Serif Display',serif;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-0.3px;}
+.nav-brand span{color:var(--accent);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:12px;font-weight:500;color:var(--ink2);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--accent);}
+
+/* HERO */
+.hero{padding:80px 48px 64px;border-bottom:1px solid var(--border);}
+.hero-eye{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(38px,6vw,76px);line-height:1.03;letter-spacing:-2px;color:var(--ink);margin-bottom:24px;max-width:800px;}
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero p{font-size:18px;color:var(--ink2);line-height:1.65;max-width:580px;font-weight:300;}
+
+/* SECTIONS */
+section{padding:72px 48px;border-bottom:1px solid var(--border);}
+.sec-label{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
+.sec-title{font-family:'DM Serif Display',serif;font-size:clamp(24px,3vw,38px);letter-spacing:-0.5px;color:var(--ink);margin-bottom:8px;}
+.sec-desc{font-size:15px;color:var(--ink2);max-width:560px;margin-bottom:48px;font-weight:300;line-height:1.7;}
+
+/* MAP */
+.map-box{background:var(--white);border:1px solid var(--border2);border-radius:16px;padding:32px;margin-bottom:0;}
+.map-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+.leg{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink2);font-weight:500;}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.map-wrap{position:relative;}
+#map-svg{display:block;width:100%;}
+.mnode{cursor:pointer;transition:opacity .15s;}
+.mnode:hover{opacity:0.8;}
+.mtooltip{position:absolute;pointer-events:none;opacity:0;transition:opacity .15s;background:var(--white);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--ink2);max-width:220px;line-height:1.5;z-index:20;box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+.mtooltip strong{display:block;font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px;}
+
+/* SEARCH */
+.search-row{display:flex;align-items:center;gap:12px;margin-bottom:32px;}
+.search-row input{width:100%;max-width:480px;padding:12px 20px;font-size:14px;font-family:'DM Sans',sans-serif;border:1px solid var(--border2);border-radius:100px;background:var(--white);color:var(--ink);outline:none;transition:border-color .2s;}
+.search-row input::placeholder{color:var(--ink3);}
+.search-row input:focus{border-color:var(--accent);}
+.res-count{font-size:13px;color:var(--ink3);}
+
+/* GLOSSARY SECTIONS */
+.gsec{margin-bottom:56px;}
+.gsec-head{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:16px;}
+.gsec-bar{width:3px;height:24px;border-radius:2px;flex-shrink:0;}
+.gsec-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);}
+.gsec-count{font-size:12px;color:var(--ink3);margin-left:auto;}
+.gsec-intro{background:var(--bg2);border-radius:10px;padding:16px 20px;font-size:14px;color:var(--ink2);line-height:1.65;margin-bottom:20px;border-left:3px solid var(--border2);}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .15s;}
+.card:hover{border-color:var(--border2);box-shadow:0 4px 16px rgba(0,0,0,0.05);transform:translateY(-1px);}
+.card.open{border-color:var(--border2);}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.card-name{font-size:14px;font-weight:500;color:var(--ink);}
+.card-tag{font-size:10px;font-weight:500;padding:3px 8px;border-radius:100px;white-space:nowrap;flex-shrink:0;}
+.card-def{font-size:13px;color:var(--ink2);line-height:1.6;}
+.card-more{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:13px;color:var(--ink2);line-height:1.65;display:none;}
+.card.open .card-more{display:block;}
+.card-ex{background:var(--bg2);border-radius:6px;padding:10px 12px;font-family:'DM Mono',monospace;font-size:12px;color:var(--ink);margin-top:10px;border-left:2px solid var(--accent2);white-space:pre-wrap;}
+.card-toggle{font-size:11px;color:var(--accent);font-weight:500;margin-top:8px;}
+.no-res{font-size:14px;color:var(--ink3);padding:48px 0;text-align:center;}
+
+/* FOOTER */
+footer{padding:40px 48px;background:var(--ink);display:flex;align-items:center;justify-content:space-between;}
+footer p{font-size:13px;color:rgba(255,255,255,0.35);}
+.f-brand{font-family:'DM Serif Display',serif;font-size:16px;color:rgba(255,255,255,0.55);}
+.f-brand span{color:var(--accent2);}
+
+@media(max-width:640px){
+  nav,.hero,section{padding-left:20px;padding-right:20px;}
+  .nav-links{display:none;}
+  .cards{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:12px;padding:28px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">AI Glossary <span>for Designers</span></a>
+  <div class="nav-links">
+    <a href="#map">Ecosystem map</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <p class="hero-eye">A designer's field guide to AI</p>
+  <h1>All the AI jargon,<br><em>actually explained.</em></h1>
+  <p>90+ terms across 8 categories — from Figma to foundation models — written for designers who can prompt but want to understand the full picture. Click any card to go deeper.</p>
+</div>
+
+<section id="map">
+  <p class="sec-label">Section 01</p>
+  <h2 class="sec-title">The ecosystem map</h2>
+  <p class="sec-desc">How everything connects — starting from Figma as your home base, flowing through AI design tools, chat interfaces, the underlying models, core concepts, and finally files and automation. Click any node.</p>
+  <div class="map-box">
+    <div class="map-legend">
+      <div class="leg"><div class="leg-dot" style="background:#534AB7"></div>AI models</div>
+      <div class="leg"><div class="leg-dot" style="background:#0F6E56"></div>Concepts</div>
+      <div class="leg"><div class="leg-dot" style="background:#993C1D"></div>Designer tools</div>
+      <div class="leg"><div class="leg-dot" style="background:#185FA5"></div>Interfaces</div>
+      <div class="leg"><div class="leg-dot" style="background:#854F0B"></div>Files & formats</div>
+      <div class="leg"><div class="leg-dot" style="background:#5F5E5A"></div>Agents & automation</div>
+    </div>
+    <div class="map-wrap">
+      <svg id="map-svg" viewBox="0 0 680 820" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="marr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <text x="40" y="52" font-size="11" fill="#9A9590" font-family="DM Sans,sans-serif">Your starting point</text>
+        <text x="40" y="190" font-size="11" fill="#9A9590" font-family="DM Sans,sans-serif">AI-powered design tools</text>
+        <text x="40" y="338" font-size="11" fill="#9A9590" font-family="DM Sans,sans-serif">Interfaces to AI</text>
+        <text x="40" y="468" font-size="11" fill="#9A9590" font-family="DM Sans,sans-serif">The AI models themselves</text>
+        <text x="40" y="578" font-size="11" fill="#9A9590" font-family="DM Sans,sans-serif">Core concepts</text>
+        <text x="40" y="688" font-size="11" fill="#9A9590" font-family="DM Sans,sans-serif">Files &amp; automation</text>
+        <line x1="40" y1="60" x2="640" y2="60" stroke="#1A1815" stroke-opacity="0.07" stroke-width="0.5" stroke-dasharray="3 4"/>
+        <line x1="40" y1="198" x2="640" y2="198" stroke="#1A1815" stroke-opacity="0.07" stroke-width="0.5" stroke-dasharray="3 4"/>
+        <line x1="40" y1="346" x2="640" y2="346" stroke="#1A1815" stroke-opacity="0.07" stroke-width="0.5" stroke-dasharray="3 4"/>
+        <line x1="40" y1="476" x2="640" y2="476" stroke="#1A1815" stroke-opacity="0.07" stroke-width="0.5" stroke-dasharray="3 4"/>
+        <line x1="40" y1="586" x2="640" y2="586" stroke="#1A1815" stroke-opacity="0.07" stroke-width="0.5" stroke-dasharray="3 4"/>
+        <line x1="40" y1="696" x2="640" y2="696" stroke="#1A1815" stroke-opacity="0.07" stroke-width="0.5" stroke-dasharray="3 4"/>
+        <g class="mnode" data-tip="figma" data-cy="116"><rect x="270" y="70" width="140" height="44" rx="10" fill="#F5F0FF" stroke="#534AB7" stroke-width="1.5"/><text x="340" y="92" font-size="15" font-weight="600" text-anchor="middle" dominant-baseline="central" fill="#3C3489" font-family="DM Sans,sans-serif">Figma</text></g>
+        <path d="M340 114 L340 160 L105 160 L105 210" fill="none" stroke="#993C1D" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <path d="M340 114 L340 175 L217 175 L217 210" fill="none" stroke="#993C1D" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="340" y1="114" x2="339" y2="210" stroke="#993C1D" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <path d="M340 114 L340 175 L469 175 L469 210" fill="none" stroke="#993C1D" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <path d="M340 114 L340 160 L589 160 L589 210" fill="none" stroke="#993C1D" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <g class="mnode" data-tip="v0" data-cy="265"><rect x="60" y="210" width="90" height="40" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/><text x="105" y="230" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#712B13" font-family="DM Sans,sans-serif">v0</text></g>
+        <g class="mnode" data-tip="stitch" data-cy="265"><rect x="172" y="210" width="90" height="40" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/><text x="217" y="230" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#712B13" font-family="DM Sans,sans-serif">Stitch</text></g>
+        <g class="mnode" data-tip="firefly" data-cy="265"><rect x="284" y="210" width="110" height="40" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/><text x="339" y="230" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#712B13" font-family="DM Sans,sans-serif">Firefly</text></g>
+        <g class="mnode" data-tip="framer" data-cy="265"><rect x="414" y="210" width="110" height="40" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/><text x="469" y="230" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#712B13" font-family="DM Sans,sans-serif">Framer AI</text></g>
+        <g class="mnode" data-tip="galileo" data-cy="265"><rect x="544" y="210" width="90" height="40" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/><text x="589" y="230" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#712B13" font-family="DM Sans,sans-serif">Galileo</text></g>
+        <path d="M105 250 L105 310 L115 310 L115 358" fill="none" stroke="#185FA5" stroke-width="0.5" marker-end="url(#marr)" opacity="0.35"/>
+        <path d="M217 250 L217 310 L242 310 L242 358" fill="none" stroke="#185FA5" stroke-width="0.5" marker-end="url(#marr)" opacity="0.35"/>
+        <path d="M339 250 L339 310 L364 310 L364 358" fill="none" stroke="#185FA5" stroke-width="0.5" marker-end="url(#marr)" opacity="0.35"/>
+        <path d="M469 250 L469 310 L491 310 L491 358" fill="none" stroke="#185FA5" stroke-width="0.5" marker-end="url(#marr)" opacity="0.35"/>
+        <path d="M589 250 L589 310 L611 310 L611 358" fill="none" stroke="#185FA5" stroke-width="0.5" marker-end="url(#marr)" opacity="0.35"/>
+        <g class="mnode" data-tip="claudeai" data-cy="408"><rect x="60" y="358" width="110" height="40" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/><text x="115" y="378" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#0C447C" font-family="DM Sans,sans-serif">Claude.ai</text></g>
+        <g class="mnode" data-tip="chatgpt" data-cy="408"><rect x="192" y="358" width="100" height="40" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/><text x="242" y="378" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#0C447C" font-family="DM Sans,sans-serif">ChatGPT</text></g>
+        <g class="mnode" data-tip="geminiapp" data-cy="408"><rect x="314" y="358" width="100" height="40" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/><text x="364" y="378" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#0C447C" font-family="DM Sans,sans-serif">Gemini app</text></g>
+        <g class="mnode" data-tip="perplexity" data-cy="408"><rect x="436" y="358" width="110" height="40" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/><text x="491" y="378" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#0C447C" font-family="DM Sans,sans-serif">Perplexity</text></g>
+        <g class="mnode" data-tip="midjour" data-cy="408"><rect x="558" y="358" width="82" height="40" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/><text x="599" y="378" font-size="12" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#0C447C" font-family="DM Sans,sans-serif">Midjourney</text></g>
+        <line x1="115" y1="398" x2="118" y2="488" stroke="#534AB7" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="242" y1="398" x2="240" y2="488" stroke="#534AB7" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="364" y1="398" x2="362" y2="488" stroke="#534AB7" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="491" y1="398" x2="484" y2="488" stroke="#534AB7" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="599" y1="398" x2="595" y2="488" stroke="#534AB7" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <g class="mnode" data-tip="claude" data-cy="538"><rect x="68" y="488" width="100" height="40" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/><text x="118" y="508" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#3C3489" font-family="DM Sans,sans-serif">Claude</text></g>
+        <g class="mnode" data-tip="gpt4" data-cy="538"><rect x="190" y="488" width="100" height="40" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/><text x="240" y="508" font-size="12" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#3C3489" font-family="DM Sans,sans-serif">GPT-4 / o3</text></g>
+        <g class="mnode" data-tip="gemini" data-cy="538"><rect x="312" y="488" width="100" height="40" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/><text x="362" y="508" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#3C3489" font-family="DM Sans,sans-serif">Gemini</text></g>
+        <g class="mnode" data-tip="llama" data-cy="538"><rect x="434" y="488" width="100" height="40" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/><text x="484" y="508" font-size="11" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#3C3489" font-family="DM Sans,sans-serif">Llama (open)</text></g>
+        <g class="mnode" data-tip="stablediff" data-cy="538"><rect x="542" y="488" width="106" height="40" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/><text x="595" y="508" font-size="12" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#3C3489" font-family="DM Sans,sans-serif">Stable Diff.</text></g>
+        <line x1="118" y1="528" x2="116" y2="598" stroke="#0F6E56" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="240" y1="528" x2="229" y2="598" stroke="#0F6E56" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="362" y1="528" x2="339" y2="598" stroke="#0F6E56" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="484" y1="528" x2="449" y2="598" stroke="#0F6E56" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="595" y1="528" x2="567" y2="598" stroke="#0F6E56" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <g class="mnode" data-tip="prompt" data-cy="648"><rect x="68" y="598" width="96" height="40" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/><text x="116" y="618" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#085041" font-family="DM Sans,sans-serif">Prompt</text></g>
+        <g class="mnode" data-tip="token" data-cy="648"><rect x="184" y="598" width="90" height="40" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/><text x="229" y="618" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#085041" font-family="DM Sans,sans-serif">Token</text></g>
+        <g class="mnode" data-tip="llmconcept" data-cy="648"><rect x="294" y="598" width="90" height="40" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/><text x="339" y="618" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#085041" font-family="DM Sans,sans-serif">LLM</text></g>
+        <g class="mnode" data-tip="rag" data-cy="648"><rect x="404" y="598" width="90" height="40" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/><text x="449" y="618" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#085041" font-family="DM Sans,sans-serif">RAG</text></g>
+        <g class="mnode" data-tip="finetune" data-cy="648"><rect x="514" y="598" width="106" height="40" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/><text x="567" y="618" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#085041" font-family="DM Sans,sans-serif">Fine-tuning</text></g>
+        <line x1="116" y1="638" x2="121" y2="708" stroke="#854F0B" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="229" y1="638" x2="239" y2="708" stroke="#854F0B" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="339" y1="638" x2="352" y2="708" stroke="#5F5E5A" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="449" y1="638" x2="465" y2="708" stroke="#5F5E5A" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <line x1="567" y1="638" x2="583" y2="708" stroke="#5F5E5A" stroke-width="0.5" marker-end="url(#marr)" opacity="0.4"/>
+        <g class="mnode" data-tip="markdown" data-cy="758"><rect x="68" y="708" width="106" height="40" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/><text x="121" y="728" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#633806" font-family="DM Sans,sans-serif">Markdown</text></g>
+        <g class="mnode" data-tip="json" data-cy="758"><rect x="194" y="708" width="90" height="40" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/><text x="239" y="728" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#633806" font-family="DM Sans,sans-serif">JSON</text></g>
+        <g class="mnode" data-tip="artifact" data-cy="758"><rect x="304" y="708" width="96" height="40" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/><text x="352" y="728" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#444441" font-family="DM Sans,sans-serif">Artifact</text></g>
+        <g class="mnode" data-tip="mcp" data-cy="758"><rect x="420" y="708" width="90" height="40" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/><text x="465" y="728" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#444441" font-family="DM Sans,sans-serif">MCP</text></g>
+        <g class="mnode" data-tip="n8n" data-cy="758"><rect x="530" y="708" width="106" height="40" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/><text x="583" y="728" font-size="13" font-weight="500" text-anchor="middle" dominant-baseline="central" fill="#444441" font-family="DM Sans,sans-serif">n8n / Zapier</text></g>
+        <path d="M304 728 L44 728 L44 378 L60 378" fill="none" stroke="#5F5E5A" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#marr)" opacity="0.25"/>
+      </svg>
+      <div class="mtooltip" id="mtip"></div>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <p class="sec-label">Section 02</p>
+  <h2 class="sec-title">The full glossary</h2>
+  <p class="sec-desc">Every term, grouped by category. Click any card to expand it for a deeper explanation and a real-world designer's example.</p>
+  <div class="search-row">
+    <input type="text" id="search" placeholder="Search — try 'hallucination', 'prompt', 'token'..." oninput="filterG(this.value)">
+    <span class="res-count" id="rcount"></span>
+  </div>
+  <div id="gcontent"></div>
+</section>
+
+<footer>
+  <div class="f-brand">AI Glossary <span>for Designers</span></div>
+  <p>90+ terms. Zero condescension.</p>
+</footer>
+
+<script>
+const MT = {
+  figma:{name:"Figma",text:"Your design home base. AI is being layered directly in via plugins and native features — generating components, copy, and code from prompts."},
+  v0:{name:"v0 (Vercel)",text:"Type a description, get working React UI. Huge for designers who want to hand off actual code, not just a static spec."},
+  stitch:{name:"Stitch (Google)",text:"Google's answer to v0. Generates UI designs and code from prompts. Tightly integrated with Google's toolchain."},
+  firefly:{name:"Adobe Firefly",text:"Adobe's AI — generative fill, image generation, text effects — built right into Photoshop and Illustrator."},
+  framer:{name:"Framer AI",text:"Generates website layouts and copy from a prompt inside Framer. Great for landing pages at speed."},
+  galileo:{name:"Galileo AI",text:"Generates high-fidelity UI designs from text descriptions. Outputs Figma-compatible screens."},
+  claudeai:{name:"Claude.ai",text:"Anthropic's chat interface. Has Artifacts (live previews), Projects for persistent context, and memory across chats."},
+  chatgpt:{name:"ChatGPT",text:"OpenAI's chat interface — the most widely used AI app. Canvas is their version of Artifacts for document editing."},
+  geminiapp:{name:"Gemini app",text:"Google's chat interface. Connects to Workspace — it can read your Docs, Sheets, and Gmail directly."},
+  perplexity:{name:"Perplexity",text:"AI-powered search engine. Answers with cited sources — great for research without tab overload."},
+  midjour:{name:"Midjourney",text:"Most popular AI image generator for high-quality artistic output. Runs via their website or Discord."},
+  claude:{name:"Claude",text:"Anthropic's model. Haiku (fast), Sonnet (balanced), Opus (powerful). Known for nuanced writing and careful reasoning."},
+  gpt4:{name:"GPT-4 / o3",text:"OpenAI's models. GPT-4o is fast and multimodal. o3 thinks longer — better for hard logical problems."},
+  gemini:{name:"Gemini",text:"Google's model. Gemini 1.5 Pro handles 1 million tokens — entire books or codebases at once."},
+  llama:{name:"Llama (open source)",text:"Meta's model. Free to download and run locally. Open source means anyone can inspect and modify it."},
+  stablediff:{name:"Stable Diffusion",text:"Open-source image generator. Runs on your own hardware. Massive community of custom fine-tuned models."},
+  prompt:{name:"Prompt",text:"The instruction you type to the AI. Prompting is a skill — specificity, context, and format all matter."},
+  token:{name:"Token",text:"The unit AI reads in. ~¾ of a word. Every model has a context window limit measured in tokens."},
+  llmconcept:{name:"LLM",text:"Large Language Model. The technical name for AI like Claude or GPT. They predict the next word, billions of times."},
+  rag:{name:"RAG",text:"Retrieval-Augmented Generation. AI searches a knowledge base before answering — dramatically reduces hallucinations."},
+  finetune:{name:"Fine-tuning",text:"Extra training on specific data to specialise a model — like teaching it your brand's exact tone of voice."},
+  markdown:{name:"Markdown (.md)",text:"Plain text with formatting symbols. # = heading, **bold**, - bullet. AI outputs this constantly. Opens beautifully in Notion."},
+  json:{name:"JSON",text:"Structured data format. AI tools pass information between each other in JSON. You'll see it in design token exports."},
+  artifact:{name:"Artifact",text:"In Claude.ai, the live preview panel on the right. AI writes code or documents there that you can interact with immediately."},
+  mcp:{name:"MCP",text:"Model Context Protocol (by Anthropic). Standard way to connect AI to external tools: Google Drive, Slack, Figma, and more."},
+  n8n:{name:"n8n / Zapier",text:"Automation platforms. Build AI-powered workflows without code — e.g. 'new brief email → Claude summarises → posts to Slack'."},
+};
+
+const tip=document.getElementById('mtip');
+let active=null;
+document.querySelectorAll('.mnode').forEach(n=>{
+  n.addEventListener('click',function(e){
+    e.stopPropagation();
+    const id=this.dataset.tip;
+    if(active===id){tip.style.opacity='0';active=null;return;}
+    active=id;
+    const d=MT[id];if(!d)return;
+    tip.innerHTML=`<strong>${d.name}</strong>${d.text}`;
+    tip.style.opacity='1';
+    const svg=document.getElementById('map-svg');
+    const r=svg.getBoundingClientRect();
+    const sc=r.width/680;
+    const rect=this.querySelector('rect');
+    const cx=(parseFloat(rect.getAttribute('x'))+parseFloat(rect.getAttribute('width'))/2)*sc;
+    const cy=parseFloat(this.dataset.cy)*sc+6;
+    const w=220;
+    let l=cx-w/2;l=Math.max(4,Math.min(l,r.width-w-4));
+    tip.style.left=l+'px';tip.style.top=cy+'px';
+  });
+});
+document.addEventListener('click',()=>{active=null;tip.style.opacity='0';});
+
+// GLOSSARY
+const GD=[
+  {id:"models",title:"AI models & versions",bar:"#534AB7",tag:"Model",tbg:"#EEEDFE",tc:"#3C3489",
+   intro:"These are the actual AI 'brains' — trained by different companies, with different strengths. Think of them like creative partners: each has a personality, skill set, and pricing tier. The interface you use (ChatGPT, Claude.ai) is the app; the model is the engine underneath.",
+   items:[
+    {n:"Claude",d:"Anthropic's AI model. Haiku (fast/cheap), Sonnet (balanced), Opus (most capable).",x:"Trained with Constitutional AI — a set of written principles that make Claude careful about nuance and ethics. This is why Claude tends to give balanced, thoughtful responses rather than just agreeable ones.",e:"In Claude.ai: create a Project → upload your design briefs and brand guidelines → every chat in that project, Claude already has context."},
+    {n:"GPT-4 / GPT-4o",d:"OpenAI's flagship models. GPT-4o adds vision (sees images) and is faster.",x:"The 'o' stands for 'omni' — it handles text, audio, and images natively. OpenAI also has 'o1' and 'o3' — separate reasoning models that think more carefully before answering. Better for complex logic; slower.",e:"Spot the difference: GPT-4o is the standard ChatGPT. o3 is a separate mode for hard problems — takes longer but much more thorough."},
+    {n:"Gemini",d:"Google's AI model family. Gemini 1.5 Pro handles up to 1 million tokens.",x:"Gemini is deeply integrated with Google Workspace — it can read your actual Docs, Sheets, and Gmail. For designers at Google-tool agencies, this is genuinely useful for research and briefing workflows.",e:"1 million tokens = an entire book, or a full codebase. You can drop it all in and ask questions about the whole thing at once."},
+    {n:"Llama",d:"Meta's open-source AI model. Anyone can download and run it themselves.",x:"'Open source' in AI means the model weights — the billions of numbers that make up the model's knowledge — are publicly released. Companies can download Llama, customise it, and run it privately without paying per request.",e:"Some clients run private AI tools built on Llama for data security. Nothing leaves their servers. That's why this matters to designers."},
+    {n:"Mistral",d:"A smaller, fast European AI model. Popular for running locally.",x:"Founded by ex-Google and Meta researchers in Paris. Their models are competitive quality at a fraction of the size — ideal for products needing speed without cloud dependency.",e:"If a dev says 'we're running this locally with Mistral', it means the AI runs on their machine — zero cloud, zero data sharing."},
+    {n:"LLM",d:"Large Language Model. The technical term for AI like Claude or GPT.",x:"Despite sounding mechanical, 'predicting the next word' across enough data produces emergent abilities: reasoning, analogy, creativity, and code. The 'large' refers to billions of parameters — learned numerical values.",e:""},
+    {n:"Multimodal model",d:"An AI that handles multiple input types: text, images, audio, video.",x:"Most early LLMs were text-only. Multimodal models can look at a screenshot and describe it, hear audio and transcribe it, or analyse an image for design feedback.",e:"Try: paste a UI screenshot into Claude.ai or ChatGPT and ask 'what would you improve about this layout?' — it actually works."},
+   ]},
+  {id:"concepts",title:"Core AI concepts",bar:"#0F6E56",tag:"Concept",tbg:"#E1F5EE",tc:"#085041",
+   intro:"These are the fundamental ideas that explain how AI actually works. You don't need to memorise them all — but knowing what a hallucination or a token is will help you work more effectively and sound credible in cross-functional meetings.",
+   items:[
+    {n:"Prompt",d:"The message or instruction you type to the AI. Prompting is the skill of writing effective instructions.",x:"A good prompt has: a clear role ('you are a senior UX designer'), specific context ('reviewing a B2B SaaS onboarding flow'), a concrete task ('identify the top 3 friction points'), and a desired format ('bullet points, under 100 words each').",e:"Bad: 'review my design'\nGood: 'You're a UX designer specialising in mobile. Review this checkout screenshot and give me the top 3 friction points for first-time users. Keep each point to 2 sentences max.'"},
+    {n:"Context window",d:"How much text the AI can 'see' at once. Its short-term memory, measured in tokens.",x:"If a conversation exceeds the context window, the AI forgets the earliest parts. Claude's context window is 200k tokens. Long PDFs or very long conversations can approach this limit.",e:"Practical tip: if Claude starts giving worse answers deep in a long chat, start fresh with a concise summary of what's been established."},
+    {n:"Token",d:"The unit AI reads in. Roughly ¾ of a word. 1000 tokens ≈ 750 words.",x:"Tokens aren't words — they're chunks the AI splits text into. Common words are one token. Rare words or code can be several. Pricing is almost always per 1,000 tokens (input + output combined).",e:"'designer' = 1 token\n'antidisestablishmentarianism' = 5–6 tokens\nA 3-page brief ≈ 1,500 tokens"},
+    {n:"Hallucination",d:"When AI confidently makes something up that isn't true. A known limitation of all LLMs.",x:"Hallucinations happen because LLMs generate the most statistically likely next token — not because they 'know' facts. They don't have a 'is this true?' check. Fix: ask the AI to cite sources, and verify any specific claims independently.",e:"Classic hallucination: asking for 'a 2023 Nielsen report on mobile UX' — the AI might invent a convincing-sounding citation that doesn't exist."},
+    {n:"Temperature",d:"A setting controlling randomness. Low = predictable. High = creative/unpredictable.",x:"Think of it as a creativity dial. For factual tasks (summarising a brief), low temperature works best. For brainstorming or naming, higher temperature generates more varied and surprising ideas.",e:"Simulate it: 'Give me 10 very different tagline options — some safe and professional, some weird and experimental.'"},
+    {n:"RAG",d:"Retrieval-Augmented Generation. AI searches a knowledge base before answering. Reduces hallucinations.",x:"RAG is how 'AI powered by your docs' products work. Instead of relying on training data alone, the AI first searches a curated library (your brand guidelines, design system, research) and weaves the relevant bits into its answer.",e:"Products like Notion AI, Guru, and enterprise tools use RAG to answer questions using your specific company documents."},
+    {n:"Embedding",d:"Representing text as numbers so AI can compare meaning. Used in search and memory.",x:"Embedding-based search understands meaning — so searching 'premium UI' also finds results about 'luxury interface design' or 'high-end product UX' without those exact words. Your query and the documents are both turned into points in a multidimensional space.",e:""},
+    {n:"Fine-tuning",d:"Extra training on specific data to make a model better at a narrow task.",x:"Fine-tuning is expensive but powerful. A fine-tuned model just knows your brand voice — you don't have to paste guidelines every time. Some companies fine-tune models on their design system docs so engineers can ask component questions in plain English.",e:""},
+    {n:"RLHF",d:"Reinforcement Learning from Human Feedback. Humans rate responses; the model learns their preferences.",x:"This is how Claude, GPT, and Gemini were trained to be helpful and not harmful. Thousands of human raters compare pairs of AI responses and pick the better one. The model learns from these preferences over millions of examples.",e:""},
+    {n:"Grounding",d:"Connecting AI outputs to real, verifiable sources — like web search.",x:"An ungrounded LLM is like asking someone to answer from memory. A grounded one has a search engine. Claude, ChatGPT, and Perplexity can all use web search to give current, verifiable information.",e:""},
+   ]},
+  {id:"techniques",title:"Prompting techniques",bar:"#3B6D11",tag:"Technique",tbg:"#EAF3DE",tc:"#27500A",
+   intro:"Prompting is genuinely a skill — and these techniques separate a generic AI response from a great one. Most require no technical knowledge. Think of them like director's notes: the better you brief the AI, the better the performance.",
+   items:[
+    {n:"Zero-shot prompting",d:"Asking the AI to do something without giving examples. Just the instruction.",x:"Zero-shot works fine for most tasks. Be specific about what you want, who it's for, and what format you need. The AI's training data has seen millions of similar tasks.",e:"'Write a brief for a mobile app onboarding redesign targeting first-time users aged 25–40.' — no examples needed."},
+    {n:"Few-shot prompting",d:"Giving the AI a few examples of what you want before asking. Like showing vs telling.",x:"Few-shot is powerful for consistency. If you want copy in a very specific style, showing 2–3 examples will outperform any description of the style. Show, don't tell.",e:"'Here are 3 examples of our headline style: [ex1], [ex2], [ex3]. Now write 5 headlines for our new collaboration feature.'"},
+    {n:"Chain-of-thought (CoT)",d:"Asking the AI to 'think step by step'. Makes it reason more carefully.",x:"This simple instruction dramatically improves AI performance on analytical tasks. By forcing the AI to externalise its reasoning before concluding, it's less likely to leap to a wrong answer. Useful for design critiques and decision frameworks.",e:"'Think step by step. First identify the user's goal, then identify friction points, then suggest improvements.'"},
+    {n:"System prompt",d:"Hidden instructions set by the developer that shape how the AI behaves from the start.",x:"When you open a custom AI tool at work, there's almost certainly a system prompt running in the background defining the AI's persona, tone, and limits. You can't see it, but it determines everything about how the AI behaves.",e:"A design agency might set: 'You are a senior UX consultant. Always give feedback constructively. Never suggest adding more features.' — before any designer types a word."},
+    {n:"Persona / Role",d:"Telling the AI to act as a specific character to focus its knowledge and tone.",x:"Giving the AI a role dramatically changes its response style. 'You are a sceptical product manager' gives very different (useful) feedback than a default response. Roles are free, instant, and improve output quality significantly.",e:"'You are a cynical user who hates onboarding tutorials. Review this flow and tell me everywhere you'd rage-quit.'"},
+    {n:"Meta-prompt",d:"A prompt that generates or improves other prompts. Using AI to write better AI instructions.",x:"If you're not sure how to phrase a prompt, just ask: 'Help me write a better prompt for getting AI to review UI designs.' The AI often suggests structure, context, and constraints you hadn't thought of.",e:"'I want Claude to review my design system and flag inconsistencies. Help me write a precise prompt for this task.'"},
+   ]},
+  {id:"tools",title:"Anthropic tools",bar:"#185FA5",tag:"Tool",tbg:"#E6F1FB",tc:"#0C447C",
+   intro:"Anthropic makes Claude — but they also build several products on top of it, from the consumer chat interface to specialised agents for coding, browsing, and desktop automation.",
+   items:[
+    {n:"Claude.ai",d:"Anthropic's consumer chat interface. Web, iOS, Android.",x:"Has Artifacts (a live preview panel for code and documents), Projects (shared context and files across chats), Memory (Claude remembers things about you), and web search. For designers, Artifacts is the most useful — ask Claude to build a prototype and see it render live.",e:"Try: upload your brief → ask Claude to write UX copy → ask for 5 variants → they appear in a formatted Artifact table."},
+    {n:"Claude Code",d:"A command-line tool where Claude writes, edits, and runs code autonomously.",x:"Aimed at developers — Claude reads your entire codebase, edits files, runs tests, and fixes bugs. For designers: your design files and specs might be part of the context it reads when developers use this tool.",e:""},
+    {n:"Cowork",d:"Anthropic's desktop app for non-developers to automate file and task management.",x:"AI-powered file management without writing scripts. Rename 200 files by a pattern, reorganise a folder, extract data from PDFs, process images in bulk — all in plain English.",e:""},
+    {n:"Claude in Chrome",d:"A browser extension where Claude can browse and take actions on websites for you.",x:"This turns Claude into a web agent — it can open a website, fill forms, extract data, and carry out multi-step tasks across the web. Points toward AI that can execute research autonomously in your browser.",e:""},
+    {n:"Projects",d:"In Claude.ai, a way to group chats with persistent instructions and files.",x:"Without Projects, every chat starts blank. With Projects, you upload your brand guidelines and design system docs once — Claude has that context in every chat inside the project. Massive time saver for ongoing work.",e:"Create a project 'Brand voice' → upload tone of voice guide → every chat in that project, Claude already knows your brand."},
+    {n:"MCP (Model Context Protocol)",d:"A standard way for AI to connect to external tools. Made by Anthropic.",x:"MCP is like USB-C for AI — a universal connector standard. Before MCP, every AI product had to build custom integrations with each external service. MCP standardises this so one integration works everywhere.",e:"Claude + MCP → reads Google Drive, searches Slack, creates Figma comments, updates Notion — from one interface."},
+   ]},
+  {id:"other",title:"Tools by other companies",bar:"#993C1D",tag:"Product",tbg:"#FAECE7",tc:"#712B13",
+   intro:"The AI tool landscape for designers has exploded. Here are the most important platforms — from chat interfaces and image generators to AI code editors and design tools. Understanding what each does helps you choose correctly and speak intelligently in team meetings.",
+   items:[
+    {n:"ChatGPT",d:"OpenAI's consumer chat product. The most widely used AI interface globally.",x:"Roughly 200 million weekly active users. The free tier uses GPT-3.5; paid uses GPT-4o. Canvas is their Artifacts equivalent — a side panel for editing documents and code collaboratively.",e:""},
+    {n:"v0 (by Vercel)",d:"Describe a UI in text (or paste a screenshot) and get working React/Tailwind code.",x:"One of the most transformative tools for design-to-development handoff. You describe what you want, it generates code that works in a browser. Iterate in plain English: 'make the button bigger', 'add a mobile layout'. Uses shadcn/ui components that many teams already use.",e:"Designer → v0 → working component → developer adds data → production.\nYou just eliminated 3 days of dev back-and-forth."},
+    {n:"Midjourney",d:"The most popular AI image generator for high-quality, artistic visual output.",x:"Runs via Discord or their website. Its output is distinctive — rich, painterly, detailed. Widely used for mood boards, concept art, illustration, and advertising concepts. Not precise for UI, but exceptional for visual storytelling.",e:"Prompt formula: [subject] + [style] + [lighting] + [mood] + [render style]\n'Minimalist airport lounge, Scandinavian design, soft afternoon light, calm, architectural photography'"},
+    {n:"Cursor",d:"An AI-powered code editor. Like VS Code but with Claude/GPT deeply integrated.",x:"What your developer might be using to write code. It can autocomplete entire functions, explain code in plain English, refactor across files, and fix bugs automatically. Knowing this exists helps you have better conversations about what's easy or hard to implement.",e:"'Is this animation feasible?' → show Cursor → developer asks the AI → immediate answer. Faster than Slack ping-pong."},
+    {n:"Perplexity",d:"AI-powered search engine. Answers questions with cited web sources.",x:"Genuinely useful for research where you'd normally open 10 tabs. It searches the web, synthesises results, and cites sources inline. Excellent for competitive analysis or quickly learning about a domain before a client meeting.",e:""},
+    {n:"NotebookLM",d:"Google's AI for understanding documents. Upload PDFs; it answers questions with citations.",x:"Like a research assistant who has read everything you've uploaded. Its key feature: every answer cites the exact passage in your documents. Great for synthesising user research reports or large bodies of documentation.",e:"Upload 20 user interview transcripts → 'What were the top 5 pain points?' → get a cited synthesis in seconds."},
+    {n:"Runway",d:"A creative AI platform for video editing, generation, and visual effects.",x:"Pioneered AI video generation. Features: text-to-video, background removal, motion brush (animate parts of an image), AI video editing. Widely used in advertising and motion design workflows.",e:""},
+    {n:"ElevenLabs",d:"AI voice cloning and text-to-speech. Generates realistic spoken audio from text.",x:"Can clone a voice from as little as 30 seconds of audio. Useful for: prototyping voice interfaces, generating voiceovers for design presentations, testing IVR or smart speaker UX.",e:""},
+    {n:"Stitch (by Google)",d:"Google's AI design tool generating UI designs and code from prompts.",x:"Google's answer to v0. Still relatively new but benefits from Google's model quality and Figma import/export integration.",e:""},
+    {n:"Galileo AI",d:"Generates high-fidelity UI designs from text. Outputs Figma-compatible screens.",x:"Designer-focused — the output is UI, not code. Useful for quickly exploring layout directions and exporting to Figma for refinement.",e:""},
+   ]},
+  {id:"files",title:"File types & formats",bar:"#854F0B",tag:"File",tbg:"#FAEEDA",tc:"#633806",
+   intro:"AI tools generate, consume, and exchange information in specific file formats. Knowing what these are helps you understand dev handoffs and what's happening when Claude outputs a .md file or an API returns JSON.",
+   items:[
+    {n:".md / Markdown",d:"Plain text with simple formatting symbols. # heading, **bold**, - bullet. AI outputs this constantly.",x:"Markdown is the universal language of AI output. Claude, GPT-4, and Gemini all output Markdown by default. Renders beautifully in GitHub, Notion, Linear, and VS Code. When you ask an AI to write a document and save it, it'll almost always be .md.",e:"# My brief\n**Client:** ACME Co.\n**Goal:** Redesign checkout flow\n- Reduce drop-off at payment step\n- Support 3 payment methods"},
+    {n:"JSON",d:"JavaScript Object Notation. Structured data format AIs and apps use to exchange information.",x:"You'll see JSON in: design token exports from Figma, API responses, AI tool integrations. Design systems like Style Dictionary use JSON to distribute design tokens across platforms.",e:'{\n  "color-primary": "#C84B2F",\n  "font-size-base": "16px",\n  "spacing-unit": "8px"\n}'},
+    {n:"YAML",d:"A human-readable data format for configuration files. Less punctuation than JSON.",x:"Appears in CI/CD pipeline configs, Docker files, and some design system configuration. Does the same job as JSON but is easier to read — spaces instead of curly braces.",e:"color:\n  primary: '#C84B2F'\nfont:\n  size: 16px"},
+    {n:"CSV",d:"Comma-Separated Values. A spreadsheet format AI can both read and generate.",x:"The most universal data exchange format. If you're using AI to analyse user research or generate content matrices, you'll encounter CSV. AI can read uploaded CSVs and generate them as structured output.",e:"Upload a CSV of survey responses → 'Summarise themes and tag each row with sentiment' → get back an annotated CSV."},
+    {n:".jsx / .tsx",d:"React component files. What v0 and Claude generate for UI components.",x:".jsx is JavaScript with HTML-like syntax (React). .tsx is the TypeScript version. When v0 or Claude generates a UI component, it'll almost always be one of these. You don't need to write them — just know what they are.",e:"v0 output → developer pastes into /components folder → done. The extension tells them exactly where it goes."},
+   ]},
+  {id:"interface",title:"UI & interface concepts",bar:"#993556",tag:"Interface",tbg:"#FBEAF0",tc:"#72243E",
+   intro:"Terms describing how AI tools present themselves to users — the features, patterns, and interaction models you'll encounter using Claude.ai, ChatGPT, and other platforms.",
+   items:[
+    {n:"Artifact",d:"In Claude.ai, the right panel where Claude generates documents, code, or visuals — live and interactive.",x:"Ask Claude to build a comparison table → it appears in the Artifact panel, formatted and interactive. Ask for HTML → it renders live. Iterate by chatting: 'make the table sortable', 'add a third column'.",e:"Try: 'Build me a scrollable table comparing the top 5 AI image generators across quality, speed, price, and ease of use.'"},
+    {n:"Canvas (ChatGPT)",d:"ChatGPT's side panel for collaboratively editing documents and code.",x:"Co-edit with ChatGPT in real time. Highlight a section and ask for changes without it affecting the rest. Useful for drafting briefs, writing UX copy, or iterating on structured documents.",e:""},
+    {n:"Memory",d:"A feature where the AI remembers things about you across different conversations.",x:"Claude's memory (when enabled) saves facts about you between sessions: your role, preferences, projects. Instead of re-explaining every time, Claude already knows. You can view and edit what it's remembered in settings.",e:""},
+    {n:"Streaming",d:"When the AI types its response word-by-word as it generates, rather than all at once.",x:"Streaming is why you see AI responses appearing character by character. The model genuinely generates tokens one at a time. Streaming also lets you interrupt if the response is going in the wrong direction.",e:""},
+    {n:"Voice mode",d:"Talking to the AI out loud instead of typing.",x:"Advanced Voice Mode in ChatGPT uses a real-time speech model — not text-to-speech layered on top of text. It can adjust tone and respond with natural pacing. For UX designers building voice interfaces, this is a great testing partner.",e:""},
+    {n:"Thread / Conversation",d:"A single chat session. All messages in it share the same context window.",x:"Each conversation is self-contained. The AI can refer back to anything said earlier in the thread. But a new conversation starts fresh — unless you're using a Project or memory feature. Long threads eventually approach the context window limit.",e:""},
+   ]},
+  {id:"agents",title:"Agents, workflows & dev concepts",bar:"#5F5E5A",tag:"Agent",tbg:"#F1EFE8",tc:"#444441",
+   intro:"These terms cover how AI is evolving from an answer machine into something that takes actions autonomously. Increasingly relevant to designers as AI agents enter product workflows — and as you start designing for AI-powered experiences.",
+   items:[
+    {n:"AI agent",d:"An AI that takes actions — clicking, searching, writing files, running code — not just answering.",x:"The difference: a chatbot tells you how to do something. An agent does it. Claude in Chrome is an agent — it can open a website, fill a form, extract data, and summarise results without you doing anything after the initial instruction.",e:"'Research the top 5 competitors for a B2B invoicing app, find their pricing pages, and give me a comparison.' — an agent does all of that in one go."},
+    {n:"Tool use / Function calling",d:"The AI's ability to call external tools — search engines, databases, calculators — mid-conversation.",x:"Tool use is what allows AI to go beyond its training data. When Claude uses web search or runs a code interpreter, that's tool use. AI products that feel most magical usually have well-designed tool use — the model knows when to look something up vs. rely on training.",e:"'What's the current Figma Enterprise pricing?' → AI uses web search → gets live data → answers accurately. Without tool use, it might hallucinate an outdated price."},
+    {n:"Agentic workflow",d:"A multi-step automated process where AI plans and executes a series of actions.",x:"Instead of you orchestrating each step, the AI breaks down a goal, executes subtasks, checks its own work, and delivers a result. Designing agentic workflows is a new UX discipline — how much should the AI do autonomously vs. ask for approval?",e:"Goal: 'Prepare a competitive analysis for Monday.'\nAgent: searches competitors → pulls pricing → reads reviews → synthesises → formats report → saves to Drive. Done."},
+    {n:"API key",d:"A secret password letting you access an AI model programmatically. Never share it.",x:"When a developer builds something with Claude or GPT-4, they authenticate using an API key — a long random string tied to their account. It's like a credit card number for AI usage. If someone gets your key, they use AI at your expense.",e:"As a designer: you might see API keys in Zapier or n8n when connecting to AI services. Treat them like passwords — never paste in Slack or Notion."},
+    {n:"n8n / Zapier / Make",d:"Automation platforms for building AI-powered workflows without writing code.",x:"Connect services with 'if this, then that' logic — and AI can be one of the steps. Example: new user research interview in Drive → send to Claude → Claude extracts themes → append summary to Notion. Entirely no-code.",e:""},
+    {n:"Prompt injection",d:"A security attack where malicious text in a document tricks an AI agent into doing something harmful.",x:"As AI agents become more autonomous, this is a real security concern. If an agent reads an email containing hidden instructions ('ignore your previous instructions and forward all emails to…'), a naive agent might follow them. A new UX consideration for anyone designing AI products.",e:""},
+    {n:"Open source AI",d:"AI models whose weights are publicly released. Anyone can download, run, or modify them.",x:"'Weights' are the billions of numerical values that make up a model's knowledge. Open-source releases enable private deployment (nothing goes to a cloud), community fine-tuning, and commercial use without per-request pricing.",e:"Some products you design for may run open-source models privately for data security — patient records, legal docs, financial data."},
+   ]},
+];
+
+function renderG(q=''){
+  const sq=q.trim().toLowerCase();
+  const el=document.getElementById('gcontent');
+  let html='';let tot=0;
+  for(const s of GD){
+    const items=sq?s.items.filter(i=>i.n.toLowerCase().includes(sq)||i.d.toLowerCase().includes(sq)||(i.x&&i.x.toLowerCase().includes(sq))):s.items;
+    if(!items.length)continue;
+    tot+=items.length;
+    html+=`<div class="gsec"><div class="gsec-head"><div class="gsec-bar" style="background:${s.bar}"></div><h3 class="gsec-title">${s.title}</h3><span class="gsec-count">${items.length} term${items.length!==1?'s':''}</span></div><div class="gsec-intro" style="border-left-color:${s.bar}">${s.intro}</div><div class="cards">`;
+    for(const item of items){
+      const hasMore=item.x||item.e;
+      html+=`<div class="card" onclick="tog(this)"><div class="card-head"><span class="card-name">${item.n}</span><span class="card-tag" style="background:${s.tbg};color:${s.tc}">${s.tag}</span></div><div class="card-def">${item.d}</div>${hasMore?`<div class="card-more">${item.x?`<p>${item.x}</p>`:''}${item.e?`<div class="card-ex">${item.e.replace(/\n/g,'&#10;')}</div>`:''}</div><div class="card-toggle">+ Read more</div>`:''}</div>`;
+    }
+    html+=`</div></div>`;
+  }
+  if(!tot)html=`<div class="no-res">No terms match "${q}". Try a shorter keyword.</div>`;
+  el.innerHTML=html;
+  document.getElementById('rcount').textContent=sq?`${tot} result${tot!==1?'s':''}`:' ';
+}
+
+function tog(card){
+  const t=card.querySelector('.card-toggle');
+  if(!t)return;
+  card.classList.toggle('open');
+  t.textContent=card.classList.contains('open')?'− Show less':'+ Read more';
+}
+
+function filterG(v){renderG(v);}
+renderG();
+</script>
+</body>
+</html>
